@@ -1,4 +1,6 @@
-.btn-purple {
-  background-color: #6f42c1;
-  color: white;
+.btn__row > div > button {
+  border-radius: 50%;
+  width: 35px;
+  display: flex;
+  justify-content: center;
 }

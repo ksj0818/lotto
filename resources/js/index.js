@@ -1,70 +1,78 @@
-let lottoNumberList = []
-let putOutLottoNumberList = []
-let serviceLottoNumber = []
+'use strict'
 
-const createNumberElement = document.getElementById('createNumber');
-const lottoBallElements = document.getElementsByClassName('lotto-ball')
-let plusIcon = document.getElementById('plusIcon');
+/**
+ * 1. 버튼에 id 또는 className을 가져온다 (getElement)
+  2. 가져온 Element에 AddEventListener를 적용한다.
+  3. Element의 innerHTML를 활용하여 값을 넣는다.
+ */
+const createNumber = document.getElementById('createNumber');
+const lottoBall = document.getElementsByClassName('lotto-ball');
+const plusIcon = document.getElementById('plusIcon');
 
-createNumberElement.addEventListener('click', function() {
-  createLottoNumber()
-  plusIcon.style.display="block"
+let lottoNumberList = [];
+let luckyNumberList = [];
+let serviceLuckyNumber = 0;
+
+
+createNumber.addEventListener('click', function() {
+  createLottoNumber();
+
+  luckyNumberList = luckyNumber(6);
+  serviceLuckyNumber = luckyNumber(1);
+  
+  luckyNumberList.push(Number(serviceLuckyNumber));
+
+  plusIcon.style.opacity='5';
+  fetchLotto();
 });
 
-// 로또 번호 생성
+// functions
 function createLottoNumber() {
-  clearLottoNumber()
-
-  putOutLottoNumberList = putOutLottoNumber(6)
-  serviceLottoNumber = putOutLottoNumber(1)
-  putOutLottoNumberList.push(serviceLottoNumber[0])
-
-  fetchLottoBall()
-}
-
-function putOutLottoNumber(count) {
-  let returnLottoNumberList = []
-  while (true) {
-    if (returnLottoNumberList.length === count) break
-
-    let randomNumber = Math.floor(Math.random() * 45)
-    let lottoNumber = lottoNumberList[randomNumber]
-
-    if (lottoNumber == -1) continue
-
-    returnLottoNumberList.push(lottoNumber)
-    lottoNumberList[randomNumber] = -1
-
-    returnLottoNumberList.sort(function(a, b) {
-      return a - b
-    })
-  }
-  return returnLottoNumberList
-}
-
-function clearLottoNumber() {
-  lottoNumberList = []
-  for (let i = 1; i <=45; i++) {
-    lottoNumberList.push(i)
+  lottoNumberList = [];
+  for (let i = 1; i <= 45; i++) {
+    lottoNumberList.push(i);
   }
 }
 
-function fetchLottoBall() {
-  for (let index in lottoBallElements) {
-    lottoBallElements[index].innerHTML = putOutLottoNumberList[index]
-    
-    if (putOutLottoNumberList[index] >= 1 && putOutLottoNumberList[index] <= 9) {
-      // 1-9 노란색 btn-warning
-      lottoBallElements[index].className = 'btn lotto-ball btn-warning'
-    } else if (putOutLottoNumberList[index] >= 10 && putOutLottoNumberList[index] <= 19) {
-      // 10-19 파란색 btn-primary
-      lottoBallElements[index].className = 'btn lotto-ball btn-primary'
-    } else if (putOutLottoNumberList[index] >= 20 && putOutLottoNumberList[index] <= 29) {
-      // 20-29 빨간색 btn-danger
-      lottoBallElements[index].className = 'btn lotto-ball btn-danger'
-    } else if (putOutLottoNumberList[index] >= 30 && putOutLottoNumberList[index] <= 45) {
-      // 30-45 보라색 btn-purple
-      lottoBallElements[index].className = 'btn lotto-ball btn-purple'
+function luckyNumber(count) {
+  let returnLuckyNumber = [];
+  for (let i = 0; i < count; i++) {
+    let randomNumber = Math.floor(Math.random() * 45);
+    if (lottoNumberList[randomNumber] === -1) {
+      i--;
+      continue;
+    } else {
+      returnLuckyNumber.push(lottoNumberList[randomNumber]);
+      lottoNumberList[randomNumber] = -1;
     }
   }
+  // 오름차순 
+  returnLuckyNumber.sort(function(a, b) {
+    return a - b;
+  });
+  return returnLuckyNumber;  
 }
+
+function fetchLotto() {
+  for (let index in lottoBall) {
+    lottoBall[index].innerHTML = luckyNumberList[index];
+
+    if (luckyNumberList[index] >= 1 && luckyNumberList[index] <= 9) {
+      // * 0~9 노란색
+      lottoBall[index].className = 'btn lotto-ball btn btn-warning';
+    } else if (luckyNumberList[index] >= 10 && luckyNumberList[index] <= 19) {
+      // * 10~19 파란색
+      lottoBall[index].className = 'btn lotto-ball btn btn-primary';
+    } else if (luckyNumberList[index] >= 20 && luckyNumberList[index] <= 29) {
+      // * 20~29 빨간색
+      lottoBall[index].className = 'btn lotto-ball btn btn-danger';
+    } else if (luckyNumberList[index] >= 30 && luckyNumberList[index] <= 39) {
+      // * 30~39 회색
+      lottoBall[index].className = 'btn lotto-ball btn btn-secondary';
+    } else if (luckyNumberList[index] >= 40 && luckyNumberList[index] <= 45) {
+      // * 40~45 녹색
+      lottoBall[index].className = 'btn lotto-ball btn btn-success';
+    } 
+  }
+}
+
