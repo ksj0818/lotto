@@ -22,8 +22,8 @@ createNumber.addEventListener('click', function() {
   
   luckyNumberList.push(Number(serviceLuckyNumber));
 
-  plusIcon.style.opacity='5';
   fetchLotto();
+  plusIcon.style.opacity='5';
 });
 
 // functions
@@ -54,24 +54,18 @@ function luckyNumber(count) {
 }
 
 function fetchLotto() {
-  for (let index in lottoBall) {
-    lottoBall[index].innerHTML = luckyNumberList[index];
-
-    if (luckyNumberList[index] >= 1 && luckyNumberList[index] <= 9) {
-      // * 0~9 노란색
-      lottoBall[index].className = 'btn lotto-ball btn btn-warning';
-    } else if (luckyNumberList[index] >= 10 && luckyNumberList[index] <= 19) {
-      // * 10~19 파란색
-      lottoBall[index].className = 'btn lotto-ball btn btn-primary';
-    } else if (luckyNumberList[index] >= 20 && luckyNumberList[index] <= 29) {
-      // * 20~29 빨간색
-      lottoBall[index].className = 'btn lotto-ball btn btn-danger';
-    } else if (luckyNumberList[index] >= 30 && luckyNumberList[index] <= 39) {
-      // * 30~39 회색
-      lottoBall[index].className = 'btn lotto-ball btn btn-secondary';
-    } else if (luckyNumberList[index] >= 40 && luckyNumberList[index] <= 45) {
-      // * 40~45 녹색
-      lottoBall[index].className = 'btn lotto-ball btn btn-success';
+  for (let i = 0; i < lottoBall.length; i++) {
+    lottoBall[i].innerHTML = luckyNumberList[i];
+    if (luckyNumberList[i] >= 1 && luckyNumberList[i] <= 9) {
+      lottoBall[i].className = 'btn btn-warning lotto-ball';
+    } else if (luckyNumberList[i] >= 10 && luckyNumberList[i] <= 19) {
+      lottoBall[i].className = 'btn btn-primary lotto-ball';
+    } else if (luckyNumberList[i] >= 20 && luckyNumberList[i] <= 29) {
+      lottoBall[i].className = 'btn btn-danger lotto-ball';
+    } else if (luckyNumberList[i] >= 30 && luckyNumberList[i] <= 39) {
+      lottoBall[i].className = 'btn btn-secondary lotto-ball';
+    } else if (luckyNumberList[i] >= 40 && luckyNumberList[i] <= 45) {
+      lottoBall[i].className = 'btn btn-success lotto-ball';
     } 
   }
 }
