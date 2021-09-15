@@ -1,6 +1,11 @@
+<<<<<<< Updated upstream
 .btn__row > div > button {
   border-radius: 50%;
   width: 35px;
   display: flex;
   justify-content: center;
+=======
+.button {
+  border-radius: 50%;
+>>>>>>> Stashed changes
 }

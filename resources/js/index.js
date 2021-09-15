@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 'use strict'
 
 /**
@@ -67,6 +68,46 @@ function fetchLotto() {
     } else if (luckyNumberList[i] >= 40 && luckyNumberList[i] <= 45) {
       lottoBall[i].className = 'btn btn-success lotto-ball';
     } 
+=======
+'use strick'
+
+let lottoNumberList = [];
+let lottoButton = document.getElementById('lottoButton');
+let lottoNumber = 0;
+let selectLottoNumber = [];
+
+
+
+// 로또번호뽑기 버튼을 눌렀을 때 이벤트
+lottoButton.addEventListener('click', function() {
+  // 로또넘버 생성 함수 호출
+  createLottoNumberList();
+});
+
+// functions 
+function createLottoNumberList() {
+    lottoNumberList = [];
+    // 로또넘버리스트 생성 (1 ~ 45) 
+    for (let i = 1; i <= 45; i++) {
+      lottoNumberList.push(i);
+    }
+    createRandomNumber();
+}
+
+function createRandomNumber() {
+  selectLottoNumber = [];
+  // 로또넘버 랜덤 뽑기 
+  for (let i = 0; i < 7; i++) {
+    randomNumber = Math.floor(Math.random() * 45 + 1);
+    
+    if (lottoNumberList[randomNumber - 1] === -1) {
+      i--;
+      continue;
+    } else {
+      selectLottoNumber.push(randomNumber);
+      lottoNumberList[randomNumber - 1] = -1;
+    }
+>>>>>>> Stashed changes
   }
 }
 
