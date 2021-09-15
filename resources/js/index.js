@@ -67,4 +67,21 @@ function fetchLottoBall() {
       lottoBallElements[index].className = 'btn lotto-ball btn-purple'
     }
   }
+
+  /**
+   *
+   *  for (let i = 0; i < lottoBall.length; i++) {
+    lottoBall[i].innerHTML = luckyNumberList[i];
+    if (luckyNumberList[i] >= 1 && luckyNumberList[i] <= 9) {
+      lottoBall[i].className = 'btn btn-warning lotto-ball';
+    } else if (luckyNumberList[i] >= 10 && luckyNumberList[i] <= 19) {
+      lottoBall[i].className = 'btn btn-primary lotto-ball';
+    } else if (luckyNumberList[i] >= 20 && luckyNumberList[i] <= 29) {
+      lottoBall[i].className = 'btn btn-danger lotto-ball';
+    } else if (luckyNumberList[i] >= 30 && luckyNumberList[i] <= 39) {
+      lottoBall[i].className = 'btn btn-secondary lotto-ball';
+    } else if (luckyNumberList[i] >= 40 && luckyNumberList[i] <= 45) {
+      lottoBall[i].className = 'btn btn-success lotto-ball';
+    } 
+   */
 }
