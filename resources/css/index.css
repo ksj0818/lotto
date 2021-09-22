@@ -1,4 +1,13 @@
-.btn-purple {
-  background-color: #6f42c1;
-  color: white;
+.lotto-ball {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.listDisplay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
